@@ -1,80 +1,132 @@
 # Ride-Hailing System
 
-## 1. Executive Summary
-This project implements a scalable, distributed ride-hailing platform built on a modernized microservices architecture. Designed to evolve from a minimal functional foundation into a fully event-driven, real-time tracking system, the platform facilitates core ride-sharing capabilities: user ride requests, intelligent driver matching, live geospatial tracking, and secure access management. The project is structured to demonstrate architect-level practices including clear system boundaries, reproducibility, and robust documentation.
+A scalable, distributed ride-hailing platform built with Spring Boot microservices. The platform covers the full ride-sharing lifecycle: ride requests, intelligent driver matching, real-time geospatial tracking, event-driven coordination via Apache Kafka, and centralized identity and access management via Keycloak.
 
-## 2. Architecture Overview
-The system follows an evolutionary architecture broken down into strategic capability phases:
+## 1. Architecture Overview
+
+The system follows an evolutionary architecture split into capability phases:
+
 - **Phase 1:** Core RESTful Foundation (API Gateway, User, Driver, and Trip Services).
-- **Phase 2:** Event-Driven Architecture utilizing Apache Kafka to decouple service communication.
+- **Phase 2:** Event-Driven Architecture using Apache Kafka to decouple service communication.
 - **Phase 3:** High-performance real-time location tracking using Redis GEO.
 - **Phase 4:** Core intelligence Matching Engine based on distance, rating, and availability.
 - **Phase 5:** Real-time WebSockets for live driver-to-rider communication.
 - **Phase 6:** Centralized Identity and Access Management (IAM) through Keycloak.
 
-## 3. Microservices Breakdown
-The backend consists of the following isolated services:
-- **API Gateway:** Central entry point, handling routing, rate limiting, and JWT validation.
-- **User Service:** Manages rider profiles, payment methods, and user history.
-- **Driver Service:** Manages driver profiles, vehicle data, and availability status.
-- **Trip Service:** The orchestrator for the ride lifecycle (requested, accepted, ongoing, completed).
-- **Matching Service:** Consumes ride requests and driver locations to intelligently pair drivers and riders.
-- **Location Service:** Consumes live GPS pings from drivers and updates Redis.
-- **Notification Service:** Pushes real-time WebSocket updates to the client applications.
+### Services Overview
 
-## 4. Event-Driven Communication (Kafka)
-To ensure loose coupling and high availability, synchronous inter-service calls are replaced with asynchronous events orchestrated by **Apache Kafka**:
-- `trip.requested`: Published by Trip Service. Consumed by Matching Service to begin driver search.
-- `driver.assigned`: Published by Matching Service. Consumed by Trip Service and Notification Service.
-- `location.updated`: High-throughput stream used for analytics and tracking.
+| Service               | Port | Responsibility                                                       |
+|-----------------------|------|----------------------------------------------------------------------|
+| discovery-server      | 8761 | Service registry (Eureka) for dynamic routing                        |
+| api-gateway           | 8080 | Entry point: routing, JWT validation, rate limiting, logging         |
+| user-service          | 8081 | Rider profiles, registration, login (Keycloak), admin endpoints      |
+| driver-service        | 8082 | Driver profiles, vehicle data, availability status                   |
+| trip-service          | 8083 | Ride lifecycle orchestrator (requested → assigned → completed)       |
+| location-service      | 8084 | Live GPS pings stored in Redis GEO, nearby driver queries            |
+| matching-service      | 8085 | Consumes ride requests and pairs drivers with riders                 |
+| notification-service  | 8086 | Pushes real-time WebSocket updates to clients                        |
 
-## 5. Real-Time Location Tracking (Redis GEO)
-Relational databases cannot handle the write-heavy load of high-frequency GPS pinging. 
-- **Data Structure:** We use Redis GEO sets (`GEOADD`, `GEOSEARCH`) to store live coordinates.
-- **Flow:** Drivers send their location every 3-5 seconds. The Location Service writes this directly to Redis. The Matching Service queries Redis for drivers within a specific radius of the rider's pickup location.
+## 2. Event-Driven Communication (Kafka)
 
-## 6. Authentication (Keycloak)
-Security is centralized using **Keycloak**.
+Synchronous inter-service calls are replaced with asynchronous events orchestrated by Apache Kafka:
+
+- `trip.requested` — Published by Trip Service. Consumed by Matching Service to begin driver search.
+- `driver.assigned` — Published by Matching Service. Consumed by Trip Service and Notification Service.
+- `trip.canceled` — Published by Trip Service to release drivers on cancellation.
+- `location.updated` — High-throughput stream used for analytics and tracking.
+
+## 3. Real-Time Location Tracking (Redis GEO)
+
+- **Data Structure:** Redis GEO sets (`GEOADD`, `GEOSEARCH`) store live driver coordinates.
+- **Flow:** Drivers send their location every 3-5 seconds. The Location Service writes directly to Redis. The Matching Service queries Redis for drivers within a radius of the rider's pickup location.
+
+## 4. Authentication (Keycloak)
+
 - **Roles:** Strict separation between `USER` and `DRIVER` roles.
 - **Flow:** Clients authenticate against Keycloak via OAuth2/OpenID Connect. Keycloak issues a JWT.
-- **Validation:** The API Gateway validates the JWT signature before routing the request to downstream microservices, ensuring secure perimeter defense.
+- **Validation:** The API Gateway validates the JWT signature before routing requests downstream, providing centralized perimeter defense.
 
-## 7. API Gateway Design
-Built with **Spring Cloud Gateway**, this service provides:
-- **Routing Rules:** Path-based routing (e.g., `/api/v1/users/**` -> User Service).
-- **Security:** Token Relay and centralized JWT validation.
-- **Cross-Cutting Concerns:** CORS configuration, request logging, and global rate limiting (to prevent DDoS/abuse).
+## 5. Getting Started
+
+### Prerequisites
+
+- JDK 17+
+- Maven 3.8+
+- Docker & Docker Compose
+
+### 1. Start Infrastructure
+
+```bash
+docker compose up -d
+```
+
+This starts PostgreSQL (5433), Redis (6380), Kafka/Zookeeper (9092), Keycloak (7080), and Jaeger (16686).
+
+### 2. Start Services
+
+Start the discovery server first, then the remaining services:
+
+```bash
+./start-services.sh
+```
+
+or run each service individually with `mvn spring-boot:run` from its directory.
+
+### 3. Stop Services
+
+```bash
+./stop-services.sh
+```
+
+### 4. Test the End-to-End Flow
+
+```bash
+./test-flow.sh
+```
+
+The script authenticates against Keycloak, registers a user and driver, requests a trip, and verifies nearby-driver matching.
+
+## 6. Project Structure
+
+```
+ride-microservices/
+├── api-gateway/           # Spring Cloud Gateway (routing, security, filters)
+├── discovery-server/      # Eureka service registry
+├── user-service/          # User & auth domain
+├── driver-service/        # Driver & vehicle domain
+├── trip-service/          # Trip lifecycle orchestrator
+├── location-service/      # Redis GEO location tracking
+├── matching-service/      # Driver-rider matching engine
+├── notification-service/  # WebSocket notifications
+├── docker-compose.yml     # Local infrastructure
+└── realm-import.json      # Keycloak realm definition
+```
+
+## 7. Observability
+
+- **Logging:** Structured logging via Logback.
+- **Distributed Tracing:** Micrometer Tracing with OTLP export to Jaeger (`http://localhost:16686`).
+- **Metrics:** Spring Boot Actuator exposes health and metrics for Prometheus/Grafana scraping.
 
 ## 8. Detailed Workflows
+
 ### Ride Request & Driver Matching
-1. **User requests a ride:** Client -> API Gateway -> Trip Service (Sync).
-2. **Trip initialized:** Trip Service saves `status=PENDING` in DB and publishes to Kafka topic `trip.requested`.
-3. **Matching:** Matching Service consumes the event -> Queries Redis GEO for nearby drivers -> Runs matching algorithm (distance/rating).
+
+1. **User requests a ride:** Client → API Gateway → Trip Service.
+2. **Trip initialized:** Trip Service saves `status=PENDING` and publishes `trip.requested` to Kafka.
+3. **Matching:** Matching Service consumes the event → queries Redis GEO for nearby drivers → runs the matching algorithm (distance/rating).
 4. **Assignment:** Matching Service publishes `driver.assigned` to Kafka.
-5. **Update & Notify:** Trip Service updates the DB. Notification Service pushes the assignment via WebSocket to the User.
+5. **Update & Notify:** Trip Service updates the DB. Notification Service pushes the assignment via WebSocket.
 
 ### Tracking Workflow
+
 1. Driver app transmits GPS coordinates every 3-5 seconds.
-2. API Gateway routes ping to Location Service.
+2. API Gateway routes the ping to Location Service.
 3. Location Service updates Redis via `GEOADD`.
-4. Driver's new location is transmitted to the waiting/riding User via WebSockets.
+4. The driver's new location is relayed to the waiting/riding user via WebSockets.
 
-## 9. Scalability Strategies
-- **Stateless Services:** All Spring Boot services are stateless, scaling horizontally via Docker/Kubernetes.
-- **Read/Write Segregation:** High-frequency location writes go to Redis, avoiding PostgreSQL locks.
-- **Partitions:** Kafka topics (e.g., location updates) are highly partitioned to allow concurrent consumer processing.
+## 9. Trade-offs and Design Decisions
 
-## 10. Fault Tolerance Mechanisms
-- **Circuit Breakers (Resilience4j):** Inter-service synchronous calls (if any) are protected with fallback methods.
-- **Event Sourcing:** Kafka provides replayability. If the Matching service crashes, it resumes reading from its last offset upon restart.
-- **Database Connection Pooling:** HikariCP used to aggressively manage DB connections.
-
-## 11. Observability
-- **Logging:** Structured JSON logging (Logback).
-- **Distributed Tracing:** Micrometer Tracing (with Zipkin or Jaeger) tracks requests as they pass from the Gateway through Kafka and downstream services.
-- **Metrics:** Spring Boot Actuator exposes health and metrics, scraped by Prometheus and visualized in Grafana.
-
-## 12. Trade-offs and Design Decisions
-- **Eventual Consistency vs. Strong Consistency:** Opted for eventual consistency for non-critical reads (like searching drivers) to ensure high availability and low latency.
-- **Redis vs Postgres for Locations:** Chosen Redis over PostGIS for real-time tracking due to the sheer volume of writes (hundreds per second), despite Redis geographic data being ephemeral.
-- **API Gateway Pattern:** Increases our network hop count by +1, but centralizes security and rate limiting, drastically simplifying our downstream services.
+- **Eventual vs. Strong Consistency:** Eventual consistency for non-critical reads (e.g., searching drivers) to ensure high availability and low latency.
+- **Redis vs. Postgres for Locations:** Redis chosen over PostGIS for real-time tracking due to write volume, despite geographic data being ephemeral.
+- **API Gateway Pattern:** Adds one network hop but centralizes security and rate limiting, simplifying downstream services.
