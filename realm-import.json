@@ -1,0 +1,41 @@
+{
+  "id": "ride-hailing-realm",
+  "realm": "ride-hailing-realm",
+  "enabled": true,
+  "roles": {
+    "realm": [
+      { "name": "APP_USER" },
+      { "name": "APP_DRIVER" }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "ride-hailing-gateway",
+      "enabled": true,
+      "publicClient": true,
+      "directAccessGrantsEnabled": true,
+      "webOrigins": ["*"],
+      "redirectUris": ["*"]
+    }
+  ],
+  "users": [
+    {
+      "username": "testuser",
+      "enabled": true,
+      "email": "user@test.com",
+      "firstName": "Test",
+      "lastName": "User",
+      "credentials": [{ "type": "password", "value": "password", "temporary": false }],
+      "realmRoles": ["APP_USER"]
+    },
+    {
+      "username": "testdriver",
+      "enabled": true,
+      "email": "driver@test.com",
+      "firstName": "Test",
+      "lastName": "Driver",
+      "credentials": [{ "type": "password", "value": "password", "temporary": false }],
+      "realmRoles": ["APP_DRIVER"]
+    }
+  ]
+}

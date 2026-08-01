@@ -1,0 +1,124 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m---------------------< [0;36mcom.ride:discovery-server[0;1m >----------------------[m
+[[1;34mINFO[m] [1mBuilding discovery-server 0.0.1-SNAPSHOT[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m>>> [0;32mspring-boot-maven-plugin:3.2.5:run[m [1m(default-cli)[0;1m > [0;1mtest-compile[m @ [36mdiscovery-server[0;1m >>>[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.3.1:resources[m [1m(default-resources)[m @ [36mdiscovery-server[0;1m ---[m
+[[1;34mINFO[m] Copying 1 resource from src/main/resources to target/classes
+[[1;34mINFO[m] Copying 0 resource from src/main/resources to target/classes
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.11.0:compile[m [1m(default-compile)[m @ [36mdiscovery-server[0;1m ---[m
+[[1;34mINFO[m] Nothing to compile - all classes are up to date
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.3.1:testResources[m [1m(default-testResources)[m @ [36mdiscovery-server[0;1m ---[m
+[[1;34mINFO[m] skip non existing resourceDirectory /home/abel/Desktop/PROJECTS/2026-projects/ride-hailing-system/discovery-server/src/test/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.11.0:testCompile[m [1m(default-testCompile)[m @ [36mdiscovery-server[0;1m ---[m
+[[1;34mINFO[m] No sources to compile
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m<<< [0;32mspring-boot-maven-plugin:3.2.5:run[m [1m(default-cli)[0;1m < [0;1mtest-compile[m @ [36mdiscovery-server[0;1m <<<[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mspring-boot-maven-plugin:3.2.5:run[m [1m(default-cli)[m @ [36mdiscovery-server[0;1m ---[m
+[[1;34mINFO[m] Attaching agents: []
+Standard Commons Logging discovery in action with spring-jcl: please remove commons-logging.jar from classpath in order to avoid potential conflicts
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.5)
+
+2026-05-20T11:18:58.068+03:00  INFO 63010 --- [           main] [                                                 ] c.r.d.DiscoveryServerApplication         : Starting DiscoveryServerApplication using Java 21.0.10 with PID 63010 (/home/abel/Desktop/PROJECTS/2026-projects/ride-hailing-system/discovery-server/target/classes started by abel in /home/abel/Desktop/PROJECTS/2026-projects/ride-hailing-system/discovery-server)
+2026-05-20T11:18:58.071+03:00  INFO 63010 --- [           main] [                                                 ] c.r.d.DiscoveryServerApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-05-20T11:18:59.275+03:00  INFO 63010 --- [           main] [                                                 ] o.s.cloud.context.scope.GenericScope     : BeanFactory id=9cc4eb44-5b41-3577-9730-da91f822c216
+2026-05-20T11:18:59.330+03:00  WARN 63010 --- [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [lbRestClientPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2026-05-20T11:18:59.332+03:00  WARN 63010 --- [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'deferringLoadBalancerInterceptor' of type [org.springframework.cloud.client.loadbalancer.DeferringLoadBalancerInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2026-05-20T11:18:59.867+03:00  INFO 63010 --- [           main] [                                                 ] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8761 (http)
+2026-05-20T11:18:59.922+03:00  INFO 63010 --- [           main] [                                                 ] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-20T11:18:59.926+03:00  INFO 63010 --- [           main] [                                                 ] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-05-20T11:19:00.315+03:00  INFO 63010 --- [           main] [                                                 ] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-05-20T11:19:00.317+03:00  INFO 63010 --- [           main] [                                                 ] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2191 ms
+Standard Commons Logging discovery in action with spring-jcl: please remove commons-logging.jar from classpath in order to avoid potential conflicts
+2026-05-20T11:19:01.952+03:00  INFO 63010 --- [           main] [                                                 ] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON encoding codec LegacyJacksonJson
+2026-05-20T11:19:01.953+03:00  INFO 63010 --- [           main] [                                                 ] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON decoding codec LegacyJacksonJson
+2026-05-20T11:19:02.120+03:00  INFO 63010 --- [           main] [                                                 ] c.n.d.provider.DiscoveryJerseyProvider   : Using XML encoding codec XStreamXml
+2026-05-20T11:19:02.121+03:00  INFO 63010 --- [           main] [                                                 ] c.n.d.provider.DiscoveryJerseyProvider   : Using XML decoding codec XStreamXml
+2026-05-20T11:19:02.981+03:00  WARN 63010 --- [           main] [                                                 ] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-05-20T11:19:02.998+03:00  INFO 63010 --- [           main] [                                                 ] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2026-05-20T11:19:03.015+03:00  INFO 63010 --- [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2026-05-20T11:19:03.015+03:00  INFO 63010 --- [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Client configured to neither register nor query for data.
+2026-05-20T11:19:03.022+03:00  INFO 63010 --- [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1779265143020 with initial instances count: 0
+2026-05-20T11:19:03.047+03:00  INFO 63010 --- [           main] [                                                 ] c.n.eureka.DefaultEurekaServerContext    : Initializing ...
+2026-05-20T11:19:03.049+03:00  INFO 63010 --- [           main] [                                                 ] c.n.eureka.cluster.PeerEurekaNodes       : Adding new peer nodes [http://localhost:8761/eureka/]
+2026-05-20T11:19:03.075+03:00  INFO 63010 --- [           main] [                                                 ] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON encoding codec LegacyJacksonJson
+2026-05-20T11:19:03.075+03:00  INFO 63010 --- [           main] [                                                 ] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON decoding codec LegacyJacksonJson
+2026-05-20T11:19:03.075+03:00  INFO 63010 --- [           main] [                                                 ] c.n.d.provider.DiscoveryJerseyProvider   : Using XML encoding codec XStreamXml
+2026-05-20T11:19:03.075+03:00  INFO 63010 --- [           main] [                                                 ] c.n.d.provider.DiscoveryJerseyProvider   : Using XML decoding codec XStreamXml
+2026-05-20T11:19:03.195+03:00  INFO 63010 --- [           main] [                                                 ] c.n.eureka.cluster.PeerEurekaNodes       : Replica node URL:  http://localhost:8761/eureka/
+2026-05-20T11:19:03.201+03:00  INFO 63010 --- [           main] [                                                 ] c.n.e.registry.AbstractInstanceRegistry  : Finished initializing remote region registries. All known remote regions: []
+2026-05-20T11:19:03.202+03:00  INFO 63010 --- [           main] [                                                 ] c.n.eureka.DefaultEurekaServerContext    : Initialized
+2026-05-20T11:19:03.213+03:00  INFO 63010 --- [           main] [                                                 ] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2026-05-20T11:19:03.257+03:00  INFO 63010 --- [           main] [                                                 ] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application UNKNOWN with eureka with status UP
+2026-05-20T11:19:03.269+03:00  INFO 63010 --- [       Thread-9] [                                                 ] o.s.c.n.e.server.EurekaServerBootstrap   : isAws returned false
+2026-05-20T11:19:03.269+03:00  INFO 63010 --- [       Thread-9] [                                                 ] o.s.c.n.e.server.EurekaServerBootstrap   : Initialized server context
+2026-05-20T11:19:03.270+03:00  INFO 63010 --- [       Thread-9] [                                                 ] c.n.e.r.PeerAwareInstanceRegistryImpl    : Got 1 instances from neighboring DS node
+2026-05-20T11:19:03.270+03:00  INFO 63010 --- [       Thread-9] [                                                 ] c.n.e.r.PeerAwareInstanceRegistryImpl    : Renew threshold is: 1
+2026-05-20T11:19:03.270+03:00  INFO 63010 --- [       Thread-9] [                                                 ] c.n.e.r.PeerAwareInstanceRegistryImpl    : Changing status to UP
+2026-05-20T11:19:03.271+03:00  INFO 63010 --- [           main] [                                                 ] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application UNKNOWN with eureka with status DOWN
+2026-05-20T11:19:03.271+03:00  WARN 63010 --- [           main] [                                                 ] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-05-20T11:19:03.271+03:00  INFO 63010 --- [           main] [                                                 ] c.n.eureka.DefaultEurekaServerContext    : Shutting down ...
+2026-05-20T11:19:03.288+03:00  INFO 63010 --- [       Thread-9] [                                                 ] e.s.EurekaServerInitializerConfiguration : Started Eureka Server
+2026-05-20T11:19:03.288+03:00 ERROR 63010 --- [t-Conn-Cleaner2] [                                                 ] c.n.d.s.t.j.EurekaJersey3ClientImpl      : Cannot clean connections
+
+java.lang.IllegalStateException: Client instance has been closed.
+	at org.glassfish.jersey.internal.guava.Preconditions.checkState(Preconditions.java:169) ~[jersey-common-3.1.6.jar:na]
+	at org.glassfish.jersey.client.JerseyClient.checkNotClosed(JerseyClient.java:248) ~[jersey-client-3.1.6.jar:na]
+	at org.glassfish.jersey.client.JerseyClient.getConfiguration(JerseyClient.java:363) ~[jersey-client-3.1.6.jar:na]
+	at org.glassfish.jersey.client.JerseyClient.getConfiguration(JerseyClient.java:54) ~[jersey-client-3.1.6.jar:na]
+	at com.netflix.discovery.shared.transport.jersey3.EurekaJersey3ClientImpl$ConnectionCleanerTask.run(EurekaJersey3ClientImpl.java:347) ~[eureka-client-jersey3-2.0.2.jar:2.0.2]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2026-05-20T11:19:03.304+03:00  INFO 63010 --- [           main] [                                                 ] c.n.eureka.DefaultEurekaServerContext    : Shut down
+2026-05-20T11:19:03.325+03:00  INFO 63010 --- [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2026-05-20T11:19:03.331+03:00  INFO 63010 --- [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
+2026-05-20T11:19:03.390+03:00  INFO 63010 --- [           main] [                                                 ] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-05-20T11:19:03.456+03:00 ERROR 63010 --- [           main] [                                                 ] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8761 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8761 or configure this application to listen on another port.
+
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;31mBUILD FAILURE[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  12.796 s
+[[1;34mINFO[m] Finished at: 2026-05-20T11:19:03+03:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;31mERROR[m] Failed to execute goal [32morg.springframework.boot:spring-boot-maven-plugin:3.2.5:run[m [1m(default-cli)[m on project [36mdiscovery-server[m: [1;31mProcess terminated with exit code: 1[m -> [1m[Help 1][m
+[[1;31mERROR[m] 
+[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
+[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
+[[1;31mERROR[m] 
+[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
+[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

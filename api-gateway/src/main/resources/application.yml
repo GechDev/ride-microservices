@@ -1,0 +1,65 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:7080/realms/ride-hailing-realm
+          jwk-set-uri: http://localhost:7080/realms/ride-hailing-realm/protocol/openid-connect/certs
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/api/v1/users/**
+        - id: driver-service
+          uri: lb://driver-service
+          predicates:
+            - Path=/api/v1/drivers/**
+        - id: trip-service
+          uri: lb://trip-service
+          predicates:
+            - Path=/api/v1/trips/**
+        - id: location-service
+          uri: lb://location-service
+          predicates:
+            - Path=/api/v1/locations/**
+        - id: notification-service
+          uri: lb://notification-service
+          predicates:
+            - Path=/ws/**
+        - id: notification-rest
+          uri: lb://notification-service
+          predicates:
+            - Path=/api/v1/notifications/**
+        - id: admin-routes
+          uri: lb://user-service
+          predicates:
+            - Path=/api/v1/admin/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+  otlp:
+    tracing:
+      endpoint: http://localhost:4318/v1/traces

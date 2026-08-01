@@ -1,0 +1,168 @@
+{
+	"info": {
+		"name": "Ride-Hailing Microservices API",
+		"description": "Complete collection for testing the Ride-Hailing Microservices ecosystem with Keycloak security.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Get Access Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{ "key": "client_id", "value": "ride-hailing-gateway", "type": "text" },
+								{ "key": "username", "value": "testuser", "type": "text" },
+								{ "key": "password", "value": "password", "type": "text" },
+								{ "key": "grant_type", "value": "password", "type": "text" }
+							]
+						},
+						"url": "http://localhost:7080/realms/ride-hailing-realm/protocol/openid-connect/token"
+					}
+				}
+			]
+		},
+		{
+			"name": "User Service",
+			"item": [
+				{
+					"name": "Register User (Public)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json", "type": "text" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Postman User\",\n    \"email\": \"postman@test.com\"\n}"
+						},
+						"url": "http://localhost:8080/api/v1/users"
+					}
+				},
+				{
+					"name": "Get All Users (Secure)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" }
+						],
+						"url": "http://localhost:8080/api/v1/users"
+					}
+				}
+			]
+		},
+		{
+			"name": "Driver Service",
+			"item": [
+				{
+					"name": "Register Driver (Public)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json", "type": "text" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Postman Driver\",\n    \"licensePlate\": \"PM-2026\",\n    \"status\": \"AVAILABLE\"\n}"
+						},
+						"url": "http://localhost:8080/api/v1/drivers"
+					}
+				},
+				{
+					"name": "Get All Drivers (Secure)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" }
+						],
+						"url": "http://localhost:8080/api/v1/drivers"
+					}
+				}
+			]
+		},
+		{
+			"name": "Trip Service",
+			"item": [
+				{
+					"name": "Request Trip (Secure)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" },
+							{ "key": "Content-Type", "value": "application/json", "type": "text" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": 1,\n    \"pickupLocation\": \"Postman Square\",\n    \"dropoffLocation\": \"Airport\"\n}"
+						},
+						"url": "http://localhost:8080/api/v1/trips"
+					}
+				}
+			]
+		},
+		{
+			"name": "Location Service",
+			"item": [
+				{
+					"name": "Update Location (Secure)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" },
+							{ "key": "Content-Type", "value": "application/json", "type": "text" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"driverId\": 1,\n    \"latitude\": 37.7749,\n    \"longitude\": -122.4194\n}"
+						},
+						"url": "http://localhost:8080/api/v1/locations"
+					}
+				},
+				{
+					"name": "Search Nearby (Secure)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" }
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/locations/nearby?lat=37.7749&lon=-122.4194&radius=5",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "v1", "locations", "nearby"],
+							"query": [
+								{ "key": "lat", "value": "37.7749" },
+								{ "key": "lon", "value": "-122.4194" },
+								{ "key": "radius", "value": "5" }
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Admin Dashboard (Secure)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" }
+						],
+						"url": "http://localhost:8080/api/v1/admin/dashboard"
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{ "key": "access_token", "value": "YOUR_TOKEN_HERE", "type": "string" }
+	]
+}

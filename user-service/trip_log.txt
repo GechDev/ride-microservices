@@ -1,0 +1,108 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m-----------------------< [0;36mcom.ride:user-service[0;1m >------------------------[m
+[[1;34mINFO[m] [1mBuilding user-service 0.0.1-SNAPSHOT[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m>>> [0;32mspring-boot-maven-plugin:3.2.5:run[m [1m(default-cli)[0;1m > [0;1mtest-compile[m @ [36muser-service[0;1m >>>[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.3.1:resources[m [1m(default-resources)[m @ [36muser-service[0;1m ---[m
+[[1;34mINFO[m] Copying 1 resource from src/main/resources to target/classes
+[[1;34mINFO[m] Copying 0 resource from src/main/resources to target/classes
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.11.0:compile[m [1m(default-compile)[m @ [36muser-service[0;1m ---[m
+[[1;34mINFO[m] Nothing to compile - all classes are up to date
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.3.1:testResources[m [1m(default-testResources)[m @ [36muser-service[0;1m ---[m
+[[1;34mINFO[m] skip non existing resourceDirectory /home/abel/Desktop/PROJECTS/2026-projects/ride-hailing-system/user-service/src/test/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.11.0:testCompile[m [1m(default-testCompile)[m @ [36muser-service[0;1m ---[m
+[[1;34mINFO[m] Nothing to compile - all classes are up to date
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m<<< [0;32mspring-boot-maven-plugin:3.2.5:run[m [1m(default-cli)[0;1m < [0;1mtest-compile[m @ [36muser-service[0;1m <<<[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mspring-boot-maven-plugin:3.2.5:run[m [1m(default-cli)[m @ [36muser-service[0;1m ---[m
+[[1;34mINFO[m] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.5)
+
+2026-05-20T12:05:20.055+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] c.r.user_service.UserServiceApplication  : Starting UserServiceApplication using Java 21.0.10 with PID 26590 (/home/abel/Desktop/PROJECTS/2026-projects/ride-hailing-system/user-service/target/classes started by abel in /home/abel/Desktop/PROJECTS/2026-projects/ride-hailing-system/user-service)
+2026-05-20T12:05:20.077+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] c.r.user_service.UserServiceApplication  : No active profile set, falling back to 1 default profile: "default"
+2026-05-20T12:05:25.007+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-20T12:05:25.295+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 271 ms. Found 1 JPA repository interface.
+2026-05-20T12:05:26.899+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] o.s.cloud.context.scope.GenericScope     : BeanFactory id=6ab35d03-7401-332e-ada6-258d3b694e5d
+2026-05-20T12:05:28.053+03:00  WARN 26590 --- [user-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [lbRestClientPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2026-05-20T12:05:28.057+03:00  WARN 26590 --- [user-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'deferringLoadBalancerInterceptor' of type [org.springframework.cloud.client.loadbalancer.DeferringLoadBalancerInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2026-05-20T12:05:28.736+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2026-05-20T12:05:28.747+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-20T12:05:28.747+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-05-20T12:05:28.939+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-05-20T12:05:28.991+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 8684 ms
+2026-05-20T12:05:31.600+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-05-20T12:05:31.664+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-05-20T12:05:31.693+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-05-20T12:05:32.868+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-20T12:05:32.922+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-20T12:05:33.237+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@36d5c2ce
+2026-05-20T12:05:33.238+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-20T12:05:35.613+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: alter table if exists users add column keycloak_id varchar(255)
+Hibernate: alter table if exists users add column phone_number varchar(255)
+Hibernate: alter table if exists users add column role varchar(255) check (role in ('USER','DRIVER','ADMIN'))
+Hibernate: alter table if exists users add column status varchar(255) check (status in ('ACTIVE','INACTIVE','SUSPENDED'))
+Hibernate: alter table if exists users add column updated_at timestamp(6)
+2026-05-20T12:05:35.854+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-20T12:05:39.234+03:00  WARN 26590 --- [user-service] [           main] [                                                 ] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-20T12:05:43.256+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2026-05-20T12:05:43.921+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@34989ceb, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@61fb3dae, org.springframework.security.web.context.SecurityContextHolderFilter@6f2d0d25, org.springframework.security.web.header.HeaderWriterFilter@45a0ba61, org.springframework.web.filter.CorsFilter@9c88323, org.springframework.security.web.authentication.logout.LogoutFilter@3022287e, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@196c8b93, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@750e313c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7217e615, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6d4bdb75, org.springframework.security.web.access.ExceptionTranslationFilter@79753f20, org.springframework.security.web.access.intercept.AuthorizationFilter@3b42d7df]
+2026-05-20T12:05:45.549+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2026-05-20T12:05:45.701+03:00  WARN 26590 --- [user-service] [           main] [                                                 ] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-05-20T12:05:46.009+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2026-05-20T12:05:46.505+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2026-05-20T12:05:46.510+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-20T12:05:46.535+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2026-05-20T12:05:46.536+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2026-05-20T12:05:46.537+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2026-05-20T12:05:46.538+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2026-05-20T12:05:46.540+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2026-05-20T12:05:46.541+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2026-05-20T12:05:46.543+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2026-05-20T12:05:47.789+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2026-05-20T12:05:47.791+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2026-05-20T12:05:47.792+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2026-05-20T12:05:47.796+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1779267947795 with initial instances count: 0
+2026-05-20T12:05:47.803+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application USER-SERVICE with eureka with status UP
+2026-05-20T12:05:47.804+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1779267947804, current=UP, previous=STARTING]
+2026-05-20T12:05:47.805+03:00  INFO 26590 --- [user-service] [nfoReplicator-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_USER-SERVICE/192.168.0.158:user-service:8081: registering service...
+2026-05-20T12:05:47.825+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path ''
+2026-05-20T12:05:47.826+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8081
+2026-05-20T12:05:47.879+03:00  INFO 26590 --- [user-service] [           main] [                                                 ] c.r.user_service.UserServiceApplication  : Started UserServiceApplication in 30.094 seconds (process running for 32.971)
+2026-05-20T12:05:48.005+03:00  INFO 26590 --- [user-service] [nfoReplicator-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_USER-SERVICE/192.168.0.158:user-service:8081 - registration status: 204
+2026-05-20T12:06:17.791+03:00  INFO 26590 --- [user-service] [freshExecutor-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2026-05-20T12:06:17.791+03:00  INFO 26590 --- [user-service] [freshExecutor-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2026-05-20T12:06:17.792+03:00  INFO 26590 --- [user-service] [freshExecutor-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2026-05-20T12:06:17.792+03:00  INFO 26590 --- [user-service] [freshExecutor-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2026-05-20T12:06:17.792+03:00  INFO 26590 --- [user-service] [freshExecutor-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2026-05-20T12:06:17.792+03:00  INFO 26590 --- [user-service] [freshExecutor-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : Application version is -1: false
+2026-05-20T12:06:17.792+03:00  INFO 26590 --- [user-service] [freshExecutor-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2026-05-20T12:06:17.897+03:00  INFO 26590 --- [user-service] [freshExecutor-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : The response status is 200
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;31mBUILD FAILURE[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  03:02 min
+[[1;34mINFO[m] Finished at: 2026-05-20T12:07:57+03:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;31mERROR[m] Failed to execute goal [32morg.springframework.boot:spring-boot-maven-plugin:3.2.5:run[m [1m(default-cli)[m on project [36muser-service[m: [1;31mProcess terminated with exit code: 137[m -> [1m[Help 1][m
+[[1;31mERROR[m] 
+[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
+[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
+[[1;31mERROR[m] 
+[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
+[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

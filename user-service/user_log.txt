@@ -1,0 +1,93 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m-----------------------< [0;36mcom.ride:user-service[0;1m >------------------------[m
+[[1;34mINFO[m] [1mBuilding user-service 0.0.1-SNAPSHOT[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m>>> [0;32mspring-boot-maven-plugin:3.2.5:run[m [1m(default-cli)[0;1m > [0;1mtest-compile[m @ [36muser-service[0;1m >>>[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.3.1:resources[m [1m(default-resources)[m @ [36muser-service[0;1m ---[m
+[[1;34mINFO[m] Copying 1 resource from src/main/resources to target/classes
+[[1;34mINFO[m] Copying 0 resource from src/main/resources to target/classes
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.11.0:compile[m [1m(default-compile)[m @ [36muser-service[0;1m ---[m
+[[1;34mINFO[m] Nothing to compile - all classes are up to date
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.3.1:testResources[m [1m(default-testResources)[m @ [36muser-service[0;1m ---[m
+[[1;34mINFO[m] skip non existing resourceDirectory /home/abel/Desktop/PROJECTS/2026-projects/ride-hailing-system/user-service/src/test/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.11.0:testCompile[m [1m(default-testCompile)[m @ [36muser-service[0;1m ---[m
+[[1;34mINFO[m] Nothing to compile - all classes are up to date
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m<<< [0;32mspring-boot-maven-plugin:3.2.5:run[m [1m(default-cli)[0;1m < [0;1mtest-compile[m @ [36muser-service[0;1m <<<[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mspring-boot-maven-plugin:3.2.5:run[m [1m(default-cli)[m @ [36muser-service[0;1m ---[m
+[[1;34mINFO[m] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.5)
+
+2026-05-20T12:08:08.376+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] c.r.user_service.UserServiceApplication  : Starting UserServiceApplication using Java 21.0.10 with PID 30056 (/home/abel/Desktop/PROJECTS/2026-projects/ride-hailing-system/user-service/target/classes started by abel in /home/abel/Desktop/PROJECTS/2026-projects/ride-hailing-system/user-service)
+2026-05-20T12:08:08.379+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] c.r.user_service.UserServiceApplication  : No active profile set, falling back to 1 default profile: "default"
+2026-05-20T12:08:09.429+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-20T12:08:09.539+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 103 ms. Found 1 JPA repository interface.
+2026-05-20T12:08:09.734+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] o.s.cloud.context.scope.GenericScope     : BeanFactory id=6ab35d03-7401-332e-ada6-258d3b694e5d
+2026-05-20T12:08:09.989+03:00  WARN 30056 --- [user-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [lbRestClientPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2026-05-20T12:08:09.991+03:00  WARN 30056 --- [user-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'deferringLoadBalancerInterceptor' of type [org.springframework.cloud.client.loadbalancer.DeferringLoadBalancerInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2026-05-20T12:08:10.202+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2026-05-20T12:08:10.211+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-20T12:08:10.211+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-05-20T12:08:10.290+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-05-20T12:08:10.291+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1873 ms
+2026-05-20T12:08:11.147+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-05-20T12:08:11.184+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-05-20T12:08:11.205+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-05-20T12:08:11.342+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-20T12:08:11.359+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-20T12:08:11.460+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5b3ee43e
+2026-05-20T12:08:11.461+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-20T12:08:12.360+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-20T12:08:12.413+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-20T12:08:12.961+03:00  WARN 30056 --- [user-service] [           main] [                                                 ] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-20T12:08:13.666+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2026-05-20T12:08:13.811+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5bd585a5, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@65c040c9, org.springframework.security.web.context.SecurityContextHolderFilter@7217e615, org.springframework.security.web.header.HeaderWriterFilter@6f2d0d25, org.springframework.web.filter.CorsFilter@11736ebc, org.springframework.security.web.authentication.logout.LogoutFilter@469caf69, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@6d4bdb75, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@48e7e2ca, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@189fe8af, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4a03c4bc, org.springframework.security.web.access.ExceptionTranslationFilter@45a0ba61, org.springframework.security.web.access.intercept.AuthorizationFilter@60a3a0fa]
+2026-05-20T12:08:14.199+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2026-05-20T12:08:14.287+03:00  WARN 30056 --- [user-service] [           main] [                                                 ] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-05-20T12:08:14.339+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2026-05-20T12:08:14.406+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2026-05-20T12:08:14.409+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-20T12:08:14.423+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2026-05-20T12:08:14.423+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2026-05-20T12:08:14.423+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2026-05-20T12:08:14.424+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2026-05-20T12:08:14.424+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2026-05-20T12:08:14.424+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2026-05-20T12:08:14.424+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2026-05-20T12:08:14.640+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2026-05-20T12:08:14.642+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2026-05-20T12:08:14.644+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2026-05-20T12:08:14.647+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1779268094647 with initial instances count: 1
+2026-05-20T12:08:14.653+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application USER-SERVICE with eureka with status UP
+2026-05-20T12:08:14.653+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1779268094653, current=UP, previous=STARTING]
+2026-05-20T12:08:14.655+03:00  INFO 30056 --- [user-service] [nfoReplicator-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_USER-SERVICE/192.168.0.158:user-service:8081: registering service...
+2026-05-20T12:08:14.673+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path ''
+2026-05-20T12:08:14.674+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8081
+2026-05-20T12:08:14.692+03:00  INFO 30056 --- [user-service] [nfoReplicator-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_USER-SERVICE/192.168.0.158:user-service:8081 - registration status: 204
+2026-05-20T12:08:14.694+03:00  INFO 30056 --- [user-service] [           main] [                                                 ] c.r.user_service.UserServiceApplication  : Started UserServiceApplication in 6.726 seconds (process running for 7.131)
+2026-05-20T12:09:52.968+03:00  INFO 30056 --- [user-service] [nio-8081-exec-1] [                                                 ] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-20T12:09:52.973+03:00  INFO 30056 --- [user-service] [nio-8081-exec-1] [                                                 ] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-20T12:09:52.982+03:00  INFO 30056 --- [user-service] [nio-8081-exec-1] [                                                 ] o.s.web.servlet.DispatcherServlet        : Completed initialization in 7 ms
+Hibernate: select u1_0.id from users u1_0 where u1_0.email=? fetch first ? rows only
+2026-05-20T12:09:58.172+03:00  WARN 30056 --- [user-service] [nio-8081-exec-1] [b85b58d3dc9a462646345474e4ea947d-471a04ec487eab15] c.r.u.service.impl.AuthServiceImpl       : Could not assign role DRIVER to user 84277fb5-b192-48d9-b1b8-9a65068e679f: HTTP 404 Not Found
+Hibernate: insert into users (created_at,email,keycloak_id,name,phone_number,role,status,updated_at) values (?,?,?,?,?,?,?,?)
+Hibernate: select u1_0.id from users u1_0 where u1_0.email=? fetch first ? rows only
+2026-05-20T12:09:58.447+03:00  WARN 30056 --- [user-service] [nio-8081-exec-2] [a7f43170ed863832e2dd2b686d0826cc-fec9d51ab020be1c] c.r.u.service.impl.AuthServiceImpl       : Could not assign role USER to user 08b0cd6a-a3ca-439c-a643-4114a741f9ce: HTTP 404 Not Found
+Hibernate: insert into users (created_at,email,keycloak_id,name,phone_number,role,status,updated_at) values (?,?,?,?,?,?,?,?)
+Hibernate: select u1_0.id from users u1_0 where u1_0.email=? fetch first ? rows only
+Hibernate: select u1_0.id,u1_0.created_at,u1_0.email,u1_0.keycloak_id,u1_0.name,u1_0.phone_number,u1_0.role,u1_0.status,u1_0.updated_at from users u1_0 where u1_0.keycloak_id=?

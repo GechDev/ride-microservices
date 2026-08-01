@@ -1,0 +1,129 @@
+services:
+  # --------------------------------------------------------
+  # PostgreSQL: Primary Relational Database
+  # --------------------------------------------------------
+  postgres:
+    image: postgres:15-alpine
+    container_name: ride_postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      # We will create multiple DBs in practice, but start with a default one
+      POSTGRES_DB: ride_hailing
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d ride_hailing"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - ride_network
+
+  # --------------------------------------------------------
+  # Redis: For Real-Time Location (GEO) & Caching
+  # --------------------------------------------------------
+  redis:
+    image: redis:7-alpine
+    container_name: ride_redis
+    ports:
+      - "6380:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - ride_network
+
+  # --------------------------------------------------------
+  # Apache Kafka & Zookeeper (Confluent Platform)
+  # --------------------------------------------------------
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    container_name: ride_zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2181:2181"
+    volumes:
+      - zookeeper_data:/var/lib/zookeeper/data
+      - zookeeper_log:/var/lib/zookeeper/log
+    networks:
+      - ride_network
+
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: ride_kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:29092,EXTERNAL://localhost:9092
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_LISTENERS: INTERNAL://0.0.0.0:29092,EXTERNAL://0.0.0.0:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+    volumes:
+      - kafka_data:/var/lib/kafka/data
+    networks:
+      - ride_network
+
+  # --------------------------------------------------------
+  # Keycloak: IAM & Security Layer
+  # --------------------------------------------------------
+  keycloak:
+    image: quay.io/keycloak/keycloak:22.0.1
+    container_name: ride_keycloak
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres:5432/ride_hailing
+      KC_DB_USERNAME: admin
+      KC_DB_PASSWORD: password
+    command: ["start-dev", "--import-realm"]
+    volumes:
+      - ./realm-import.json:/opt/keycloak/data/import/realm-import.json
+    ports:
+      - "7080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - ride_network
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.56
+    container_name: ride_jaeger
+    ports:
+      - "16686:16686" # UI
+      - "4317:4317"   # OTLP gRPC
+      - "4318:4318"   # OTLP HTTP
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+    networks:
+      - ride_network
+
+volumes:
+  postgres_data:
+  redis_data:
+  kafka_data:
+  zookeeper_data:
+  zookeeper_log:
+
+networks:
+  ride_network:
+    driver: bridge

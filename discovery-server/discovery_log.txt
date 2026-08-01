@@ -1,0 +1,92 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m---------------------< [0;36mcom.ride:discovery-server[0;1m >----------------------[m
+[[1;34mINFO[m] [1mBuilding discovery-server 0.0.1-SNAPSHOT[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m>>> [0;32mspring-boot-maven-plugin:3.2.5:run[m [1m(default-cli)[0;1m > [0;1mtest-compile[m @ [36mdiscovery-server[0;1m >>>[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.3.1:resources[m [1m(default-resources)[m @ [36mdiscovery-server[0;1m ---[m
+[[1;34mINFO[m] Copying 1 resource from src/main/resources to target/classes
+[[1;34mINFO[m] Copying 0 resource from src/main/resources to target/classes
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.11.0:compile[m [1m(default-compile)[m @ [36mdiscovery-server[0;1m ---[m
+[[1;34mINFO[m] Nothing to compile - all classes are up to date
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.3.1:testResources[m [1m(default-testResources)[m @ [36mdiscovery-server[0;1m ---[m
+[[1;34mINFO[m] skip non existing resourceDirectory /home/abel/Desktop/PROJECTS/2026-projects/ride-hailing-system/discovery-server/src/test/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.11.0:testCompile[m [1m(default-testCompile)[m @ [36mdiscovery-server[0;1m ---[m
+[[1;34mINFO[m] No sources to compile
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m<<< [0;32mspring-boot-maven-plugin:3.2.5:run[m [1m(default-cli)[0;1m < [0;1mtest-compile[m @ [36mdiscovery-server[0;1m <<<[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mspring-boot-maven-plugin:3.2.5:run[m [1m(default-cli)[m @ [36mdiscovery-server[0;1m ---[m
+[[1;34mINFO[m] Attaching agents: []
+Standard Commons Logging discovery in action with spring-jcl: please remove commons-logging.jar from classpath in order to avoid potential conflicts
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.5)
+
+2026-05-20T12:04:22.779+03:00  INFO 25017 --- [           main] [                                                 ] c.r.d.DiscoveryServerApplication         : Starting DiscoveryServerApplication using Java 21.0.10 with PID 25017 (/home/abel/Desktop/PROJECTS/2026-projects/ride-hailing-system/discovery-server/target/classes started by abel in /home/abel/Desktop/PROJECTS/2026-projects/ride-hailing-system/discovery-server)
+2026-05-20T12:04:22.783+03:00  INFO 25017 --- [           main] [                                                 ] c.r.d.DiscoveryServerApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-05-20T12:04:24.749+03:00  INFO 25017 --- [           main] [                                                 ] o.s.cloud.context.scope.GenericScope     : BeanFactory id=9cc4eb44-5b41-3577-9730-da91f822c216
+2026-05-20T12:04:25.106+03:00  WARN 25017 --- [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [lbRestClientPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2026-05-20T12:04:25.135+03:00  WARN 25017 --- [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'deferringLoadBalancerInterceptor' of type [org.springframework.cloud.client.loadbalancer.DeferringLoadBalancerInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2026-05-20T12:04:26.018+03:00  INFO 25017 --- [           main] [                                                 ] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8761 (http)
+2026-05-20T12:04:26.073+03:00  INFO 25017 --- [           main] [                                                 ] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-20T12:04:26.075+03:00  INFO 25017 --- [           main] [                                                 ] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-05-20T12:04:26.402+03:00  INFO 25017 --- [           main] [                                                 ] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-05-20T12:04:26.409+03:00  INFO 25017 --- [           main] [                                                 ] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3540 ms
+Standard Commons Logging discovery in action with spring-jcl: please remove commons-logging.jar from classpath in order to avoid potential conflicts
+2026-05-20T12:04:32.398+03:00  INFO 25017 --- [           main] [                                                 ] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON encoding codec LegacyJacksonJson
+2026-05-20T12:04:32.400+03:00  INFO 25017 --- [           main] [                                                 ] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON decoding codec LegacyJacksonJson
+2026-05-20T12:04:32.828+03:00  INFO 25017 --- [           main] [                                                 ] c.n.d.provider.DiscoveryJerseyProvider   : Using XML encoding codec XStreamXml
+2026-05-20T12:04:32.829+03:00  INFO 25017 --- [           main] [                                                 ] c.n.d.provider.DiscoveryJerseyProvider   : Using XML decoding codec XStreamXml
+2026-05-20T12:04:34.382+03:00  WARN 25017 --- [           main] [                                                 ] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-05-20T12:04:34.396+03:00  INFO 25017 --- [           main] [                                                 ] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2026-05-20T12:04:34.411+03:00  INFO 25017 --- [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2026-05-20T12:04:34.411+03:00  INFO 25017 --- [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Client configured to neither register nor query for data.
+2026-05-20T12:04:34.416+03:00  INFO 25017 --- [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1779267874415 with initial instances count: 0
+2026-05-20T12:04:34.485+03:00  INFO 25017 --- [           main] [                                                 ] c.n.eureka.DefaultEurekaServerContext    : Initializing ...
+2026-05-20T12:04:34.486+03:00  INFO 25017 --- [           main] [                                                 ] c.n.eureka.cluster.PeerEurekaNodes       : Adding new peer nodes [http://localhost:8761/eureka/]
+2026-05-20T12:04:34.513+03:00  INFO 25017 --- [           main] [                                                 ] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON encoding codec LegacyJacksonJson
+2026-05-20T12:04:34.513+03:00  INFO 25017 --- [           main] [                                                 ] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON decoding codec LegacyJacksonJson
+2026-05-20T12:04:34.513+03:00  INFO 25017 --- [           main] [                                                 ] c.n.d.provider.DiscoveryJerseyProvider   : Using XML encoding codec XStreamXml
+2026-05-20T12:04:34.513+03:00  INFO 25017 --- [           main] [                                                 ] c.n.d.provider.DiscoveryJerseyProvider   : Using XML decoding codec XStreamXml
+2026-05-20T12:04:34.660+03:00  INFO 25017 --- [           main] [                                                 ] c.n.eureka.cluster.PeerEurekaNodes       : Replica node URL:  http://localhost:8761/eureka/
+2026-05-20T12:04:34.666+03:00  INFO 25017 --- [           main] [                                                 ] c.n.e.registry.AbstractInstanceRegistry  : Finished initializing remote region registries. All known remote regions: []
+2026-05-20T12:04:34.667+03:00  INFO 25017 --- [           main] [                                                 ] c.n.eureka.DefaultEurekaServerContext    : Initialized
+2026-05-20T12:04:34.677+03:00  INFO 25017 --- [           main] [                                                 ] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2026-05-20T12:04:34.798+03:00  INFO 25017 --- [           main] [                                                 ] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application UNKNOWN with eureka with status UP
+2026-05-20T12:04:34.805+03:00  INFO 25017 --- [       Thread-9] [                                                 ] o.s.c.n.e.server.EurekaServerBootstrap   : isAws returned false
+2026-05-20T12:04:34.806+03:00  INFO 25017 --- [       Thread-9] [                                                 ] o.s.c.n.e.server.EurekaServerBootstrap   : Initialized server context
+2026-05-20T12:04:34.806+03:00  INFO 25017 --- [       Thread-9] [                                                 ] c.n.e.r.PeerAwareInstanceRegistryImpl    : Got 1 instances from neighboring DS node
+2026-05-20T12:04:34.806+03:00  INFO 25017 --- [       Thread-9] [                                                 ] c.n.e.r.PeerAwareInstanceRegistryImpl    : Renew threshold is: 1
+2026-05-20T12:04:34.806+03:00  INFO 25017 --- [       Thread-9] [                                                 ] c.n.e.r.PeerAwareInstanceRegistryImpl    : Changing status to UP
+2026-05-20T12:04:34.969+03:00  INFO 25017 --- [       Thread-9] [                                                 ] e.s.EurekaServerInitializerConfiguration : Started Eureka Server
+2026-05-20T12:04:34.974+03:00  INFO 25017 --- [           main] [                                                 ] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8761 (http) with context path ''
+2026-05-20T12:04:34.975+03:00  INFO 25017 --- [           main] [                                                 ] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8761
+2026-05-20T12:04:34.990+03:00  INFO 25017 --- [           main] [                                                 ] c.r.d.DiscoveryServerApplication         : Started DiscoveryServerApplication in 14.432 seconds (process running for 14.949)
+2026-05-20T12:05:34.810+03:00  INFO 25017 --- [a-EvictionTimer] [                                                 ] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-05-20T12:05:47.604+03:00  INFO 25017 --- [nio-8761-exec-1] [                                                 ] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-20T12:05:47.605+03:00  INFO 25017 --- [nio-8761-exec-1] [                                                 ] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-20T12:05:47.610+03:00  INFO 25017 --- [nio-8761-exec-1] [                                                 ] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2026-05-20T12:05:48.002+03:00  INFO 25017 --- [nio-8761-exec-4] [8976ee9e19a193502148665423e62423-7a1123f10d55630f] c.n.e.registry.AbstractInstanceRegistry  : Registered instance USER-SERVICE/192.168.0.158:user-service:8081 with status UP (replication=false)
+2026-05-20T12:05:48.764+03:00  INFO 25017 --- [nio-8761-exec-5] [86196b4e04e7896afcd92091a51756d3-b00a957f93a9c766] c.n.e.registry.AbstractInstanceRegistry  : Registered instance USER-SERVICE/192.168.0.158:user-service:8081 with status UP (replication=true)
+2026-05-20T12:06:34.810+03:00  INFO 25017 --- [a-EvictionTimer] [                                                 ] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-05-20T12:07:34.810+03:00  INFO 25017 --- [a-EvictionTimer] [                                                 ] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-05-20T12:08:14.691+03:00  INFO 25017 --- [io-8761-exec-10] [bf5409a16effc0a0024d0f9dc6c734d3-8667f19393b70589] c.n.e.registry.AbstractInstanceRegistry  : Registered instance USER-SERVICE/192.168.0.158:user-service:8081 with status UP (replication=false)
+2026-05-20T12:08:15.205+03:00  INFO 25017 --- [nio-8761-exec-1] [5ec43a8211b9f20e198351feb9b0a89a-08406732d93fd1bb] c.n.e.registry.AbstractInstanceRegistry  : Registered instance USER-SERVICE/192.168.0.158:user-service:8081 with status UP (replication=true)
+2026-05-20T12:08:34.811+03:00  INFO 25017 --- [a-EvictionTimer] [                                                 ] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-05-20T12:08:37.775+03:00  INFO 25017 --- [nio-8761-exec-3] [e2f6bb78f89a7a7a760ad65754db2650-bdfadccbbd538fbf] c.n.e.registry.AbstractInstanceRegistry  : Registered instance TRIP-SERVICE/192.168.0.158:trip-service:8083 with status UP (replication=false)
+2026-05-20T12:08:38.302+03:00  INFO 25017 --- [nio-8761-exec-4] [85a83674747cb482e509553e6934477f-32b7ac30dfad8c48] c.n.e.registry.AbstractInstanceRegistry  : Registered instance TRIP-SERVICE/192.168.0.158:trip-service:8083 with status UP (replication=true)
+2026-05-20T12:09:34.810+03:00  INFO 25017 --- [a-EvictionTimer] [                                                 ] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-05-20T12:10:34.810+03:00  INFO 25017 --- [a-EvictionTimer] [                                                 ] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-05-20T12:11:34.810+03:00  INFO 25017 --- [a-EvictionTimer] [                                                 ] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
