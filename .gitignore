@@ -30,3 +30,12 @@ logs/
 
 # Environment
 .env
+
+# Local debug logs and scratch files
+*.log
+**/trip_log*.txt
+**/user_log.txt
+**/boot_log.txt
+/discovery_log.txt
+/trip_log.txt
+fix_poms.py
