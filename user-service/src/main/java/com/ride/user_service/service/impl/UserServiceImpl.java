@@ -1,6 +1,7 @@
 package com.ride.user_service.service.impl;
 
 import com.ride.user_service.entity.User;
+import com.ride.user_service.exception.UserNotFoundException;
 import com.ride.user_service.repository.UserRepository;
 import com.ride.user_service.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +32,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserById(Long id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("User not found with id: " + id));
+                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + id));
     }
 }

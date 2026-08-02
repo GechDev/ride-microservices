@@ -5,7 +5,9 @@ import com.ride.user_service.dto.RegistrationRequestDTO;
 import com.ride.user_service.dto.TokenResponseDTO;
 import com.ride.user_service.entity.User;
 import com.ride.user_service.entity.UserStatus;
+import com.ride.user_service.exception.InvalidCredentialsException;
 import com.ride.user_service.exception.UserAlreadyExistsException;
+import com.ride.user_service.exception.UserNotFoundException;
 import com.ride.user_service.repository.UserRepository;
 import com.ride.user_service.service.AuthService;
 import jakarta.ws.rs.core.Response;
@@ -21,6 +23,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
@@ -114,9 +117,14 @@ public class AuthServiceImpl implements AuthService {
         body.add("scope", "openid");
 
         HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity<>(body, headers);
-        
-        ResponseEntity<TokenResponseDTO> response = restTemplate.postForEntity(tokenUrl, entity, TokenResponseDTO.class);
-        return response.getBody();
+
+        try {
+            ResponseEntity<TokenResponseDTO> response = restTemplate.postForEntity(tokenUrl, entity, TokenResponseDTO.class);
+            return response.getBody();
+        } catch (RestClientException e) {
+            log.error("Login failed for user {}: {}", request.getEmail(), e.getMessage());
+            throw new InvalidCredentialsException("Invalid email or password");
+        }
     }
 
     @Override
@@ -133,13 +141,18 @@ public class AuthServiceImpl implements AuthService {
 
         HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity<>(body, headers);
 
-        ResponseEntity<TokenResponseDTO> response = restTemplate.postForEntity(tokenUrl, entity, TokenResponseDTO.class);
-        return response.getBody();
+        try {
+            ResponseEntity<TokenResponseDTO> response = restTemplate.postForEntity(tokenUrl, entity, TokenResponseDTO.class);
+            return response.getBody();
+        } catch (RestClientException e) {
+            log.error("Token refresh failed: {}", e.getMessage());
+            throw new InvalidCredentialsException("Refresh token is invalid or expired");
+        }
     }
 
     @Override
     public User getProfile(String keycloakId) {
         return userRepository.findByKeycloakId(keycloakId)
-                .orElseThrow(() -> new RuntimeException("User profile not found"));
+                .orElseThrow(() -> new UserNotFoundException("User profile not found"));
     }
 }
