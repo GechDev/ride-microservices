@@ -50,8 +50,11 @@ public class AuthServiceImpl implements AuthService {
     @Override
     @Transactional
     public User register(RegistrationRequestDTO request) {
-        if (userRepository.existsByEmail(request.getEmail())) {
-            throw new UserAlreadyExistsException("User with email " + request.getEmail() + " already exists");
+        String normalizedEmail = request.getEmail().trim().toLowerCase();
+        request.setEmail(normalizedEmail);
+
+        if (userRepository.existsByEmail(normalizedEmail)) {
+            throw new UserAlreadyExistsException("User with email " + normalizedEmail + " already exists");
         }
 
         // 1. Create User in Keycloak
@@ -105,14 +108,15 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public TokenResponseDTO login(LoginRequestDTO request) {
         String tokenUrl = authServerUrl + "/realms/" + realm + "/protocol/openid-connect/token";
-        
+        String username = request.getEmail().trim().toLowerCase();
+
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
         body.add("grant_type", "password");
         body.add("client_id", clientId);
-        body.add("username", request.getEmail());
+        body.add("username", username);
         body.add("password", request.getPassword());
         body.add("scope", "openid");
 
@@ -122,7 +126,7 @@ public class AuthServiceImpl implements AuthService {
             ResponseEntity<TokenResponseDTO> response = restTemplate.postForEntity(tokenUrl, entity, TokenResponseDTO.class);
             return response.getBody();
         } catch (RestClientException e) {
-            log.error("Login failed for user {}: {}", request.getEmail(), e.getMessage());
+            log.error("Login failed for user {}: {}", username, e.getMessage());
             throw new InvalidCredentialsException("Invalid email or password");
         }
     }
