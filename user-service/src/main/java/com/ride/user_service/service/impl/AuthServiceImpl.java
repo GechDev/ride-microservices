@@ -92,7 +92,8 @@ public class AuthServiceImpl implements AuthService {
             log.warn("Could not assign role {} to user {}: {}", request.getRole(), keycloakId, e.getMessage());
         }
 
-        // 4. Save in Local DB
+        // 4. Save in Local DB. If persistence fails, remove the Keycloak user
+        //    to avoid leaving an orphaned identity provider account behind.
         User user = User.builder()
                 .keycloakId(keycloakId)
                 .email(request.getEmail())
@@ -102,7 +103,17 @@ public class AuthServiceImpl implements AuthService {
                 .status(UserStatus.ACTIVE)
                 .build();
 
-        return userRepository.save(user);
+        try {
+            return userRepository.save(user);
+        } catch (RuntimeException e) {
+            log.error("Failed to persist user {} in local DB: {}", keycloakId, e.getMessage());
+            try {
+                usersResource.get(keycloakId).remove();
+            } catch (Exception cleanupEx) {
+                log.error("Failed to roll back Keycloak user {}: {}", keycloakId, cleanupEx.getMessage());
+            }
+            throw e;
+        }
     }
 
     @Override
