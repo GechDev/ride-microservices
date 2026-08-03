@@ -4,12 +4,12 @@ import com.ride.trip_service.dto.FareEstimate;
 import com.ride.trip_service.entity.Trip;
 import com.ride.trip_service.entity.TripStatus;
 import com.ride.trip_service.event.TripRequestedEvent;
-import com.ride.trip_service.exception.InvalidTripStateException;
 import com.ride.trip_service.exception.TripNotFoundException;
 import com.ride.trip_service.producer.TripProducer;
 import com.ride.trip_service.repository.TripRepository;
 import com.ride.trip_service.service.FareCalculator;
 import com.ride.trip_service.service.TripService;
+import com.ride.trip_service.service.TripStateMachine;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -24,6 +24,7 @@ public class TripServiceImpl implements TripService {
     private final TripRepository tripRepository;
     private final TripProducer tripProducer;
     private final FareCalculator fareCalculator;
+    private final TripStateMachine tripStateMachine;
 
     @Override
     public Trip createTrip(Trip trip) {
@@ -65,11 +66,17 @@ public class TripServiceImpl implements TripService {
     }
 
     @Override
+    public Trip startTrip(Long id) {
+        Trip trip = getTripById(id);
+        tripStateMachine.validateTransition(trip.getStatus(), TripStatus.IN_PROGRESS, "start");
+        trip.setStatus(TripStatus.IN_PROGRESS);
+        return tripRepository.save(trip);
+    }
+
+    @Override
     public Trip cancelTrip(Long id) {
         Trip trip = getTripById(id);
-        if (trip.getStatus() == TripStatus.COMPLETED) {
-            throw new InvalidTripStateException("Cannot cancel a completed trip.");
-        }
+        tripStateMachine.validateTransition(trip.getStatus(), TripStatus.CANCELED, "cancel");
         trip.setStatus(TripStatus.CANCELED);
         trip.setCanceledBy("USER");
         return tripRepository.save(trip);
@@ -78,9 +85,7 @@ public class TripServiceImpl implements TripService {
     @Override
     public Trip completeTrip(Long id) {
         Trip trip = getTripById(id);
-        if (trip.getStatus() != TripStatus.ASSIGNED && trip.getStatus() != TripStatus.IN_PROGRESS) {
-            throw new InvalidTripStateException("Only assigned or in-progress trips can be completed.");
-        }
+        tripStateMachine.validateTransition(trip.getStatus(), TripStatus.COMPLETED, "complete");
         trip.setStatus(TripStatus.COMPLETED);
         return tripRepository.save(trip);
     }

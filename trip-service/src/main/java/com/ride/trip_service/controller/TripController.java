@@ -43,6 +43,12 @@ public class TripController {
         return ResponseEntity.ok(ApiResponse.success(trips, "Trips retrieved successfully"));
     }
 
+    @PostMapping("/{id}/start")
+    public ResponseEntity<ApiResponse<Trip>> startTrip(@PathVariable Long id) {
+        Trip trip = tripService.startTrip(id);
+        return ResponseEntity.ok(ApiResponse.success(trip, "Trip started successfully"));
+    }
+
     @PostMapping("/{id}/cancel")
     public ResponseEntity<ApiResponse<Trip>> cancelTrip(@PathVariable Long id) {
         Trip trip = tripService.cancelTrip(id);
