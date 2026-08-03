@@ -59,3 +59,12 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+
+ride:
+  fare:
+    base-fare: 2.50
+    per-km-rate: 1.20
+    per-minute-rate: 0.30
+    minimum-fare: 5.00
+    default-distance-km: 5.2
+    default-duration-min: 12

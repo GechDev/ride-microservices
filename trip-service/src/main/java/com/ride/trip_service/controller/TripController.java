@@ -24,7 +24,9 @@ public class TripController {
         trip.setUserId(tripRequest.getUserId());
         trip.setPickupLocation(tripRequest.getPickupLocation());
         trip.setDropoffLocation(tripRequest.getDropoffLocation());
-        
+        trip.setDistanceKm(tripRequest.getDistanceKm());
+        trip.setEstimatedDurationMin(tripRequest.getEstimatedDurationMin());
+
         Trip savedTrip = tripService.createTrip(trip);
         return ResponseEntity.ok(ApiResponse.success(savedTrip, "Trip created successfully"));
     }
