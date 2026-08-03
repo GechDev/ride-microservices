@@ -1,6 +1,7 @@
 package com.ride.driver_service.service.impl;
 
 import com.ride.driver_service.entity.Driver;
+import com.ride.driver_service.entity.DriverStatus;
 import com.ride.driver_service.repository.DriverRepository;
 import com.ride.driver_service.service.DriverService;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,7 @@ public class DriverServiceImpl implements DriverService {
     @Override
     public Driver createDriver(Driver driver) {
         if (driver.getStatus() == null) {
-            driver.setStatus("AVAILABLE");
+            driver.setStatus(DriverStatus.AVAILABLE);
         }
         return driverRepository.save(driver);
     }
@@ -35,7 +36,7 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public Driver getAvailableDriver() {
-        return driverRepository.findByStatus("AVAILABLE").stream()
+        return driverRepository.findByStatus(DriverStatus.AVAILABLE).stream()
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("No available drivers found"));
     }
