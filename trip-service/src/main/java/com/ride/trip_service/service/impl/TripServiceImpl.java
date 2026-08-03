@@ -3,6 +3,7 @@ package com.ride.trip_service.service.impl;
 import com.ride.trip_service.dto.FareEstimate;
 import com.ride.trip_service.entity.Trip;
 import com.ride.trip_service.entity.TripStatus;
+import com.ride.trip_service.event.TripCanceledEvent;
 import com.ride.trip_service.event.TripRequestedEvent;
 import com.ride.trip_service.exception.TripNotFoundException;
 import com.ride.trip_service.producer.TripProducer;
@@ -79,7 +80,20 @@ public class TripServiceImpl implements TripService {
         tripStateMachine.validateTransition(trip.getStatus(), TripStatus.CANCELED, "cancel");
         trip.setStatus(TripStatus.CANCELED);
         trip.setCanceledBy("USER");
-        return tripRepository.save(trip);
+        Trip canceledTrip = tripRepository.save(trip);
+
+        try {
+            TripCanceledEvent event = TripCanceledEvent.builder()
+                    .tripId(canceledTrip.getId())
+                    .userId(canceledTrip.getUserId())
+                    .driverId(canceledTrip.getDriverId())
+                    .build();
+            tripProducer.sendTripCanceled(event);
+        } catch (Exception e) {
+            log.error("Failed to publish cancellation for trip {}: {}", canceledTrip.getId(), e.getMessage());
+        }
+
+        return canceledTrip;
     }
 
     @Override
