@@ -22,6 +22,7 @@ public class MatchingService {
 
     private final RestTemplate restTemplate;
     private final KafkaTemplate<String, Object> kafkaTemplate;
+    private final DriverSelector driverSelector;
     private static final String ASSIGN_TOPIC = "driver.assigned";
     private static final String LOCATION_SERVICE_URL = "lb://location-service/api/v1/locations/nearby";
 
@@ -44,8 +45,10 @@ public class MatchingService {
 
             if (response.getBody() != null && response.getBody().isSuccess()) {
                 List<NearbyDriver> drivers = response.getBody().getData();
-                if (!drivers.isEmpty()) {
-                    Long selectedDriverId = drivers.get(0).getDriverId();
+                NearbyDriver selected = driverSelector.select(drivers);
+
+                if (selected != null) {
+                    Long selectedDriverId = selected.getDriverId();
                     log.info("Match found! Trip {} -> Driver {}", event.getTripId(), selectedDriverId);
 
                     // 2. Publish Assignment Event
