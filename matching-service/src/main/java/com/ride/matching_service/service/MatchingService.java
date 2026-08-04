@@ -23,18 +23,19 @@ public class MatchingService {
     private final RestTemplate restTemplate;
     private final KafkaTemplate<String, Object> kafkaTemplate;
     private static final String ASSIGN_TOPIC = "driver.assigned";
+    private static final String LOCATION_SERVICE_URL = "lb://location-service/api/v1/locations/nearby";
 
     public void processMatch(TripRequestedEvent event) {
         log.info("Processing match for trip: {}", event.getTripId());
 
         try {
-            // 1. Find nearby drivers via location-service
+            // 1. Find nearby drivers via location-service (resolved through service discovery)
             // For now, we hardcode coordinates to match the test-flow.sh (Point A)
             // In a real app, we would resolve "Point A" to lat/lon
             double lat = 37.7749;
             double lon = -122.4194;
 
-            String url = String.format("http://localhost:8084/api/v1/locations/nearby?lat=%s&lon=%s&radius=10", lat, lon);
+            String url = String.format("%s?lat=%s&lon=%s&radius=10", LOCATION_SERVICE_URL, lat, lon);
             
             ResponseEntity<ApiResponse<List<NearbyDriver>>> response = restTemplate.exchange(
                     url,
