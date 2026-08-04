@@ -24,6 +24,10 @@ public class TripController {
         trip.setUserId(tripRequest.getUserId());
         trip.setPickupLocation(tripRequest.getPickupLocation());
         trip.setDropoffLocation(tripRequest.getDropoffLocation());
+        trip.setPickupLatitude(tripRequest.getPickupLatitude());
+        trip.setPickupLongitude(tripRequest.getPickupLongitude());
+        trip.setDropoffLatitude(tripRequest.getDropoffLatitude());
+        trip.setDropoffLongitude(tripRequest.getDropoffLongitude());
         trip.setDistanceKm(tripRequest.getDistanceKm());
         trip.setEstimatedDurationMin(tripRequest.getEstimatedDurationMin());
 

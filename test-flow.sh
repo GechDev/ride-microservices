@@ -46,7 +46,7 @@ echo "Step 3: Requesting a Trip (Authenticated)..."
 TRIP_RESPONSE=$(curl -s -X POST "$GATEWAY_URL/trips" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
-  -d '{"userId": 1, "pickupLocation": "Point A", "dropoffLocation": "Point B"}')
+  -d '{"userId": 1, "pickupLocation": "Point A", "dropoffLocation": "Point B", "pickupLatitude": 37.7749, "pickupLongitude": -122.4194}')
 echo "Response: $TRIP_RESPONSE"
 echo ""
 

@@ -45,6 +45,8 @@ public class TripServiceImpl implements TripService {
                     .userId(savedTrip.getUserId())
                     .pickupLocation(savedTrip.getPickupLocation())
                     .dropoffLocation(savedTrip.getDropoffLocation())
+                    .pickupLatitude(savedTrip.getPickupLatitude())
+                    .pickupLongitude(savedTrip.getPickupLongitude())
                     .build();
 
             tripProducer.sendTripRequest(event);

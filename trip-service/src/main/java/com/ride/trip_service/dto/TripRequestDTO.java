@@ -1,5 +1,7 @@
 package com.ride.trip_service.dto;
 
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -22,6 +24,24 @@ public class TripRequestDTO {
 
     @NotBlank(message = "Dropoff location is required")
     private String dropoffLocation;
+
+    @NotNull(message = "Pickup latitude is required")
+    @DecimalMin(value = "-90.0", message = "Latitude must be between -90 and 90")
+    @DecimalMax(value = "90.0", message = "Latitude must be between -90 and 90")
+    private Double pickupLatitude;
+
+    @NotNull(message = "Pickup longitude is required")
+    @DecimalMin(value = "-180.0", message = "Longitude must be between -180 and 180")
+    @DecimalMax(value = "180.0", message = "Longitude must be between -180 and 180")
+    private Double pickupLongitude;
+
+    @DecimalMin(value = "-90.0", message = "Latitude must be between -90 and 90")
+    @DecimalMax(value = "90.0", message = "Latitude must be between -90 and 90")
+    private Double dropoffLatitude;
+
+    @DecimalMin(value = "-180.0", message = "Longitude must be between -180 and 180")
+    @DecimalMax(value = "180.0", message = "Longitude must be between -180 and 180")
+    private Double dropoffLongitude;
 
     @Positive(message = "Distance must be a positive value")
     private Double distanceKm;

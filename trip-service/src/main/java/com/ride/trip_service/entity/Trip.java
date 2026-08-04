@@ -27,6 +27,11 @@ public class Trip {
     
     private String pickupLocation;
     private String dropoffLocation;
+
+    private Double pickupLatitude;
+    private Double pickupLongitude;
+    private Double dropoffLatitude;
+    private Double dropoffLongitude;
     
     @Enumerated(EnumType.STRING)
     private TripStatus status;

@@ -30,10 +30,8 @@ public class MatchingService {
 
         try {
             // 1. Find nearby drivers via location-service (resolved through service discovery)
-            // For now, we hardcode coordinates to match the test-flow.sh (Point A)
-            // In a real app, we would resolve "Point A" to lat/lon
-            double lat = 37.7749;
-            double lon = -122.4194;
+            double lat = event.getPickupLatitude() != null ? event.getPickupLatitude() : 37.7749;
+            double lon = event.getPickupLongitude() != null ? event.getPickupLongitude() : -122.4194;
 
             String url = String.format("%s?lat=%s&lon=%s&radius=10", LOCATION_SERVICE_URL, lat, lon);
             

@@ -14,4 +14,6 @@ public class TripRequestedEvent {
     private Long userId;
     private String pickupLocation;
     private String dropoffLocation;
+    private Double pickupLatitude;
+    private Double pickupLongitude;
 }
