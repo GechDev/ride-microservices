@@ -1,5 +1,6 @@
 package com.ride.location_service.service.impl;
 
+import com.ride.location_service.config.LocationProperties;
 import com.ride.location_service.dto.NearbyDriverResponse;
 import com.ride.location_service.service.LocationService;
 import lombok.RequiredArgsConstructor;
@@ -21,30 +22,37 @@ import java.util.stream.Collectors;
 @Slf4j
 public class LocationServiceImpl implements LocationService {
 
+    private static final double MIN_LATITUDE = -90.0;
+    private static final double MAX_LATITUDE = 90.0;
+    private static final double MIN_LONGITUDE = -180.0;
+    private static final double MAX_LONGITUDE = 180.0;
+
     private final RedisTemplate<String, String> redisTemplate;
-    private static final String DRIVER_GEO_KEY = "driver_locations";
+    private final LocationProperties properties;
 
     @Override
     public void updateDriverLocation(Long driverId, double latitude, double longitude) {
+        validateCoordinates(latitude, longitude);
         log.info("Updating location for driver {}: {}, {}", driverId, latitude, longitude);
-        redisTemplate.opsForGeo().add(DRIVER_GEO_KEY, new Point(longitude, latitude), String.valueOf(driverId));
+        redisTemplate.opsForGeo().add(properties.getGeoKey(), new Point(longitude, latitude), String.valueOf(driverId));
     }
 
     @Override
     public List<NearbyDriverResponse> findNearbyDrivers(double latitude, double longitude, double radiusKm) {
+        validateCoordinates(latitude, longitude);
         log.info("Searching for drivers within {}km of {}, {}", radiusKm, latitude, longitude);
-        
+
         Point point = new Point(longitude, latitude);
         Distance distance = new Distance(radiusKm, Metrics.KILOMETERS);
         Circle circle = new Circle(point, distance);
-        
+
         RedisGeoCommands.GeoRadiusCommandArgs args = RedisGeoCommands.GeoRadiusCommandArgs.newGeoRadiusArgs()
                 .includeDistance()
                 .includeCoordinates()
                 .sortAscending();
 
         GeoResults<RedisGeoCommands.GeoLocation<String>> results = redisTemplate.opsForGeo()
-                .radius(DRIVER_GEO_KEY, circle, args);
+                .radius(properties.getGeoKey(), circle, args);
 
         if (results == null) return List.of();
 
@@ -56,5 +64,14 @@ public class LocationServiceImpl implements LocationService {
                         .longitude(result.getContent().getPoint().getX())
                         .build())
                 .collect(Collectors.toList());
+    }
+
+    private void validateCoordinates(double latitude, double longitude) {
+        if (latitude < MIN_LATITUDE || latitude > MAX_LATITUDE) {
+            throw new IllegalArgumentException("Latitude must be between -90 and 90");
+        }
+        if (longitude < MIN_LONGITUDE || longitude > MAX_LONGITUDE) {
+            throw new IllegalArgumentException("Longitude must be between -180 and 180");
+        }
     }
 }

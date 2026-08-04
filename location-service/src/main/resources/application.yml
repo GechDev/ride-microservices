@@ -20,6 +20,11 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka/
 
+ride:
+  location:
+    geo-key: driver_locations
+    default-search-radius-km: 5.0
+
 management:
   tracing:
     sampling:
