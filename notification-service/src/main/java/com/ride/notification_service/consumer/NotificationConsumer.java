@@ -17,10 +17,13 @@ public class NotificationConsumer {
     @KafkaListener(topics = "driver.assigned", groupId = "notification-group")
     public void consumeAssignment(DriverAssignedEvent event) {
         log.info("Pushing notification for trip {}: driverId={}", event.getTripId(), event.getDriverId());
-        
+
         String destination = "/topic/trips/" + event.getTripId();
-        messagingTemplate.convertAndSend(destination, event);
-        
-        log.info("WebSocket message sent to {}", destination);
+        try {
+            messagingTemplate.convertAndSend(destination, event);
+            log.info("WebSocket message sent to {}", destination);
+        } catch (Exception e) {
+            log.error("Failed to push notification to {}: {}", destination, e.getMessage());
+        }
     }
 }
