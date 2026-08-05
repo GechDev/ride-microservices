@@ -1,5 +1,6 @@
 package com.ride.driver_service.consumer;
 
+import com.ride.driver_service.config.KafkaTopics;
 import com.ride.driver_service.event.TripRequestedEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class TripConsumer {
 
-    @KafkaListener(topics = "trip.requested", groupId = "driver-group")
+    @KafkaListener(topics = KafkaTopics.TRIP_REQUESTED, groupId = "driver-group")
     public void consumeTripRequest(TripRequestedEvent event) {
         log.info("Received trip request via Kafka: tripId={}, location={}", 
             event.getTripId(), event.getPickupLocation());

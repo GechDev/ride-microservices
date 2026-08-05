@@ -1,5 +1,6 @@
 package com.ride.matching_service.service;
 
+import com.ride.matching_service.config.KafkaTopics;
 import com.ride.matching_service.dto.ApiResponse;
 import com.ride.matching_service.dto.NearbyDriver;
 import com.ride.matching_service.event.DriverAssignedEvent;
@@ -23,7 +24,6 @@ public class MatchingService {
     private final RestTemplate restTemplate;
     private final KafkaTemplate<String, Object> kafkaTemplate;
     private final DriverSelector driverSelector;
-    private static final String ASSIGN_TOPIC = "driver.assigned";
     private static final String LOCATION_SERVICE_URL = "lb://location-service/api/v1/locations/nearby";
 
     public void processMatch(TripRequestedEvent event) {
@@ -57,7 +57,7 @@ public class MatchingService {
                             .driverId(selectedDriverId)
                             .build();
 
-                    kafkaTemplate.send(ASSIGN_TOPIC, assignment);
+                    kafkaTemplate.send(KafkaTopics.DRIVER_ASSIGNED, assignment);
                     log.info("Assignment event published for trip {}", event.getTripId());
                 } else {
                     log.warn("No drivers found nearby for trip {}", event.getTripId());

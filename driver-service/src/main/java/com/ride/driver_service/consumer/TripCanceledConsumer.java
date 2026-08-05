@@ -1,5 +1,6 @@
 package com.ride.driver_service.consumer;
 
+import com.ride.driver_service.config.KafkaTopics;
 import com.ride.driver_service.entity.DriverStatus;
 import com.ride.driver_service.event.TripCanceledEvent;
 import com.ride.driver_service.repository.DriverRepository;
@@ -15,7 +16,7 @@ public class TripCanceledConsumer {
 
     private final DriverRepository driverRepository;
 
-    @KafkaListener(topics = "trip.canceled", groupId = "driver-group")
+    @KafkaListener(topics = KafkaTopics.TRIP_CANCELED, groupId = "driver-group")
     public void consumeTripCanceled(TripCanceledEvent event) {
         log.info("Received trip canceled event: tripId={}, driverId={}", event.getTripId(), event.getDriverId());
 

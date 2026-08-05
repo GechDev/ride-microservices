@@ -1,5 +1,6 @@
 package com.ride.trip_service.consumer;
 
+import com.ride.trip_service.config.KafkaTopics;
 import com.ride.trip_service.event.DriverAssignedEvent;
 import com.ride.trip_service.entity.Trip;
 import com.ride.trip_service.entity.TripStatus;
@@ -16,7 +17,7 @@ public class AssignmentConsumer {
 
     private final TripRepository tripRepository;
 
-    @KafkaListener(topics = "driver.assigned", groupId = "trip-group")
+    @KafkaListener(topics = KafkaTopics.DRIVER_ASSIGNED, groupId = "trip-group")
     public void consumeAssignment(DriverAssignedEvent event) {
         log.info("Received assignment for trip {}: driverId={}", event.getTripId(), event.getDriverId());
         
