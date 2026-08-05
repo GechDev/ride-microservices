@@ -8,6 +8,8 @@ import com.ride.location_service.service.LocationService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
@@ -37,8 +39,11 @@ public class LocationController {
             @RequestParam @DecimalMin(value = "-180.0", message = "Longitude must be between -180 and 180")
             @DecimalMax(value = "180.0", message = "Longitude must be between -180 and 180") double lon,
             @RequestParam(defaultValue = "${ride.location.default-search-radius-km:5.0}")
-            @Positive(message = "Radius must be positive") double radius) {
-        List<NearbyDriverResponse> nearby = locationService.findNearbyDrivers(lat, lon, radius);
+            @Positive(message = "Radius must be positive") double radius,
+            @RequestParam(defaultValue = "10")
+            @Min(value = 1, message = "Limit must be at least 1")
+            @Max(value = 50, message = "Limit cannot exceed 50") int limit) {
+        List<NearbyDriverResponse> nearby = locationService.findNearbyDrivers(lat, lon, radius, limit);
         return ApiResponse.success(nearby, "Successfully fetched nearby drivers");
     }
 }

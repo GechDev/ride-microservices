@@ -6,6 +6,4 @@ import lombok.Data;
 public class NearbyDriver {
     private Long driverId;
     private double distance;
-    private double latitude;
-    private double longitude;
 }

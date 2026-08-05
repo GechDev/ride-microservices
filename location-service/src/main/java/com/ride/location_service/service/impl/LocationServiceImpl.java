@@ -38,21 +38,21 @@ public class LocationServiceImpl implements LocationService {
     }
 
     @Override
-    public List<NearbyDriverResponse> findNearbyDrivers(double latitude, double longitude, double radiusKm) {
+    public List<NearbyDriverResponse> findNearbyDrivers(double latitude, double longitude, double radiusKm, int limit) {
         validateCoordinates(latitude, longitude);
-        log.info("Searching for drivers within {}km of {}, {}", radiusKm, latitude, longitude);
+        log.info("Searching for up to {} drivers within {}km of {}, {}", limit, radiusKm, latitude, longitude);
 
         Point point = new Point(longitude, latitude);
         Distance distance = new Distance(radiusKm, Metrics.KILOMETERS);
         Circle circle = new Circle(point, distance);
 
-        RedisGeoCommands.GeoRadiusCommandArgs args = RedisGeoCommands.GeoRadiusCommandArgs.newGeoRadiusArgs()
+        RedisGeoCommands.GeoSearchCommandArgs args = RedisGeoCommands.GeoSearchCommandArgs.newGeoSearchArgs()
                 .includeDistance()
-                .includeCoordinates()
-                .sortAscending();
+                .sortAscending()
+                .limit(limit);
 
         GeoResults<RedisGeoCommands.GeoLocation<String>> results = redisTemplate.opsForGeo()
-                .radius(properties.getGeoKey(), circle, args);
+                .search(properties.getGeoKey(), circle, args);
 
         if (results == null) return List.of();
 
@@ -60,8 +60,6 @@ public class LocationServiceImpl implements LocationService {
                 .map(result -> NearbyDriverResponse.builder()
                         .driverId(Long.parseLong(result.getContent().getName()))
                         .distance(result.getDistance().getValue())
-                        .latitude(result.getContent().getPoint().getY())
-                        .longitude(result.getContent().getPoint().getX())
                         .build())
                 .collect(Collectors.toList());
     }

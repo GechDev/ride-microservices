@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface LocationService {
     void updateDriverLocation(Long driverId, double latitude, double longitude);
-    List<NearbyDriverResponse> findNearbyDrivers(double latitude, double longitude, double radiusKm);
+    List<NearbyDriverResponse> findNearbyDrivers(double latitude, double longitude, double radiusKm, int limit);
 }
