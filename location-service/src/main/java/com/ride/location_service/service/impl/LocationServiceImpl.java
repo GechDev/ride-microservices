@@ -5,12 +5,12 @@ import com.ride.location_service.dto.NearbyDriverResponse;
 import com.ride.location_service.service.LocationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.geo.Circle;
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.GeoResults;
 import org.springframework.data.geo.Point;
 import org.springframework.data.redis.connection.RedisGeoCommands;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.domain.geo.GeoReference;
 import org.springframework.data.redis.domain.geo.Metrics;
 import org.springframework.stereotype.Service;
 
@@ -44,7 +44,6 @@ public class LocationServiceImpl implements LocationService {
 
         Point point = new Point(longitude, latitude);
         Distance distance = new Distance(radiusKm, Metrics.KILOMETERS);
-        Circle circle = new Circle(point, distance);
 
         RedisGeoCommands.GeoSearchCommandArgs args = RedisGeoCommands.GeoSearchCommandArgs.newGeoSearchArgs()
                 .includeDistance()
@@ -52,7 +51,7 @@ public class LocationServiceImpl implements LocationService {
                 .limit(limit);
 
         GeoResults<RedisGeoCommands.GeoLocation<String>> results = redisTemplate.opsForGeo()
-                .search(properties.getGeoKey(), circle, args);
+                .search(properties.getGeoKey(), GeoReference.fromCoordinate(point), distance, args);
 
         if (results == null) return List.of();
 
