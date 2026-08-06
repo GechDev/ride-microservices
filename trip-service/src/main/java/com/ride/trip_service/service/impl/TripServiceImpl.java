@@ -11,6 +11,7 @@ import com.ride.trip_service.repository.TripRepository;
 import com.ride.trip_service.service.FareCalculator;
 import com.ride.trip_service.service.TripService;
 import com.ride.trip_service.service.TripStateMachine;
+import com.ride.trip_service.util.GeoUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,14 @@ public class TripServiceImpl implements TripService {
     @Override
     public Trip createTrip(Trip trip) {
         trip.setStatus(TripStatus.REQUESTED);
+
+        if (trip.getDistanceKm() == null && hasCompleteCoordinates(trip)) {
+            double derivedKm = GeoUtils.haversineKm(
+                    trip.getPickupLatitude(), trip.getPickupLongitude(),
+                    trip.getDropoffLatitude(), trip.getDropoffLongitude());
+            log.info("Derived trip distance from coordinates: {} km", derivedKm);
+            trip.setDistanceKm(derivedKm);
+        }
 
         FareEstimate estimate = fareCalculator.estimate(trip.getDistanceKm(), trip.getEstimatedDurationMin());
         trip.setFare(estimate.getFare());
@@ -102,6 +111,13 @@ public class TripServiceImpl implements TripService {
         }
 
         return canceledTrip;
+    }
+
+    private boolean hasCompleteCoordinates(Trip trip) {
+        return trip.getPickupLatitude() != null
+                && trip.getPickupLongitude() != null
+                && trip.getDropoffLatitude() != null
+                && trip.getDropoffLongitude() != null;
     }
 
     @Override

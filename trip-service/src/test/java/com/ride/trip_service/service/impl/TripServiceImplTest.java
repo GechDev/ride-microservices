@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
@@ -67,6 +68,25 @@ class TripServiceImplTest {
         assertEquals(12, result.getEstimatedDurationMin());
         assertTrue(result.getFare().compareTo(BigDecimal.valueOf(12.34)) == 0);
         verify(tripProducer).sendTripRequest(any(TripRequestedEvent.class));
+    }
+
+    @Test
+    void createTrip_derivesDistanceFromCoordinates() {
+        Trip trip = Trip.builder()
+                .userId(10L)
+                .pickupLocation("Point A")
+                .dropoffLocation("Point B")
+                .pickupLatitude(37.7749)
+                .pickupLongitude(-122.4194)
+                .dropoffLatitude(37.7849)
+                .dropoffLongitude(-122.4094)
+                .build();
+        when(tripRepository.save(any(Trip.class))).thenAnswer(invocation -> invocation.getArgument(0));
+
+        Trip result = tripService.createTrip(trip);
+
+        assertNotNull(result.getDistanceKm());
+        assertTrue(result.getDistanceKm() > 1.0 && result.getDistanceKm() < 2.0);
     }
 
     @Test
