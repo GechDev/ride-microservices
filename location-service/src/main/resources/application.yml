@@ -1,9 +1,12 @@
 server:
   port: 8084
+  shutdown: graceful
 
 spring:
   application:
     name: location-service
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
   data:
     redis:
       host: 127.0.0.1

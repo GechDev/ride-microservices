@@ -1,9 +1,12 @@
 server:
   port: 8086
+  shutdown: graceful
 
 spring:
   application:
     name: notification-service
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
   security:
     oauth2:
       resourceserver:

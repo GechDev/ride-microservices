@@ -1,9 +1,12 @@
 server:
   port: 8082
+  shutdown: graceful
 
 spring:
   application:
     name: driver-service
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
   security:
     oauth2:
       resourceserver:

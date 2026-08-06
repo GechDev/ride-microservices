@@ -1,5 +1,6 @@
 server:
   port: 8083
+  shutdown: graceful
 
 logging:
   level:
@@ -9,6 +10,8 @@ logging:
 spring:
   application:
     name: trip-service
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
   security:
     oauth2:
       resourceserver:

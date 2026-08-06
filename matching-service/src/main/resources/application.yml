@@ -1,9 +1,12 @@
 server:
   port: 8085
+  shutdown: graceful
 
 spring:
   application:
     name: matching-service
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
   kafka:
     bootstrap-servers: 127.0.0.1:9092
     producer:
