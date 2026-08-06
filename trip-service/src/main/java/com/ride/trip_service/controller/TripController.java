@@ -47,6 +47,12 @@ public class TripController {
         return ResponseEntity.ok(ApiResponse.success(trips, "Trips retrieved successfully"));
     }
 
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<ApiResponse<List<Trip>>> getTripsByUser(@PathVariable Long userId) {
+        List<Trip> trips = tripService.getTripsByUser(userId);
+        return ResponseEntity.ok(ApiResponse.success(trips, "Trip history retrieved successfully"));
+    }
+
     @PostMapping("/{id}/start")
     public ResponseEntity<ApiResponse<Trip>> startTrip(@PathVariable Long id) {
         Trip trip = tripService.startTrip(id);

@@ -69,6 +69,12 @@ public class TripServiceImpl implements TripService {
     }
 
     @Override
+    public List<Trip> getTripsByUser(Long userId) {
+        log.info("Fetching trip history for user {}", userId);
+        return tripRepository.findByUserIdOrderByCreatedAtDesc(userId);
+    }
+
+    @Override
     public Trip startTrip(Long id) {
         Trip trip = getTripById(id);
         tripStateMachine.validateTransition(trip.getStatus(), TripStatus.IN_PROGRESS, "start");
