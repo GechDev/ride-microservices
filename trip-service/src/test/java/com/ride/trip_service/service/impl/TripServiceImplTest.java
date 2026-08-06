@@ -16,6 +16,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -137,5 +138,20 @@ class TripServiceImplTest {
         when(tripRepository.findById(99L)).thenReturn(Optional.empty());
 
         assertThrows(TripNotFoundException.class, () -> tripService.getTripById(99L));
+    }
+
+    @Test
+    void getTripsByUser_returnsHistoryForUser() {
+        List<Trip> trips = List.of(
+                Trip.builder().id(2L).userId(10L).status(TripStatus.COMPLETED).build(),
+                Trip.builder().id(1L).userId(10L).status(TripStatus.CANCELED).build()
+        );
+        when(tripRepository.findByUserIdOrderByCreatedAtDesc(10L)).thenReturn(trips);
+
+        List<Trip> result = tripService.getTripsByUser(10L);
+
+        assertEquals(2, result.size());
+        assertEquals(2L, result.get(0).getId());
+        verify(tripRepository).findByUserIdOrderByCreatedAtDesc(10L);
     }
 }
