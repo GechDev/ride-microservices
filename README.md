@@ -130,3 +130,38 @@ ride-microservices/
 - **Eventual vs. Strong Consistency:** Eventual consistency for non-critical reads (e.g., searching drivers) to ensure high availability and low latency.
 - **Redis vs. Postgres for Locations:** Redis chosen over PostGIS for real-time tracking due to write volume, despite geographic data being ephemeral.
 - **API Gateway Pattern:** Adds one network hop but centralizes security and rate limiting, simplifying downstream services.
+
+## 10. Deployment & Environment Configuration
+
+### Environment Variables
+
+Configuration is externalized so each service can be tuned per environment without code changes:
+
+| Variable | Default | Scope |
+|----------|---------|-------|
+| `SPRING_DATASOURCE_URL` / `SPRING_DATASOURCE_USERNAME` / `SPRING_DATASOURCE_PASSWORD` | local PostgreSQL | user, driver, trip services |
+| `SPRING_DATA_REDIS_HOST` / `SPRING_DATA_REDIS_PORT` | `127.0.0.1:6380` | location-service |
+| `SPRING_KAFKA_BOOTSTRAP_SERVERS` | `127.0.0.1:9092` | all event-driven services |
+| `SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI` | local Keycloak realm | resource servers |
+| `EUREKA_CLIENT_SERVICEURL_DEFAULTZONE` | `http://localhost:8761/eureka/` | all registered services |
+| `RIDE_FARE_*` | see `trip-service` config | fare engine tuning |
+| `RIDE_LOCATION_GEO_KEY` / `RIDE_LOCATION_DEFAULT_SEARCH_RADIUS_KM` | `driver_locations` / `5.0` | location queries |
+
+### Startup Order
+
+Infrastructure containers report readiness via Docker Compose health checks (`pg_isready`, `redis-cli ping`, Kafka topic listing), and dependent services only start once dependencies are healthy. Application services should be started in order:
+
+1. `discovery-server`
+2. business services (`user`, `driver`, `trip`, `location`, `matching`, `notification`)
+3. `api-gateway`
+
+### Graceful Shutdown
+
+Every service enables graceful shutdown (`server.shutdown: graceful`) with a 20s lifecycle timeout so in-flight requests drain and Kafka consumer offsets commit cleanly before the process exits.
+
+### Production Considerations
+
+- Build reproducible artifacts with `mvn clean package` and deploy as versioned containers.
+- Replace the embedded H2/default datasource with managed PostgreSQL and run Flyway-style schema migrations instead of `ddl-auto: update`.
+- Terminate TLS at the API Gateway and restrict downstream traffic to the internal network.
+- Scale stateless services horizontally behind the gateway; the discovery server and Redis GEO act as the coordination layer.
