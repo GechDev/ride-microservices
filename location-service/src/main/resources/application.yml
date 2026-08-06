@@ -17,6 +17,12 @@ management:
     web:
       exposure:
         include: health,info,metrics
+  tracing:
+    sampling:
+      probability: 1.0
+  otlp:
+    tracing:
+      endpoint: http://localhost:4318/v1/traces
 
 eureka:
   client:
@@ -27,11 +33,3 @@ ride:
   location:
     geo-key: driver_locations
     default-search-radius-km: 5.0
-
-management:
-  tracing:
-    sampling:
-      probability: 1.0
-  otlp:
-    tracing:
-      endpoint: http://localhost:4318/v1/traces
